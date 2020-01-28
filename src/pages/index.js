@@ -1,21 +1,81 @@
 import React from "react"
-import { Link } from "gatsby"
-
 import Layout from "../components/layout"
-import Image from "../components/image"
-import SEO from "../components/seo"
+import CardsGrid from "../components/HomePageGrid"
+import Typography from '@material-ui/core/Typography';
+import { makeStyles } from '@material-ui/core/styles';
+import Grid from '@material-ui/core/Grid';
+import Paper from '@material-ui/core/Paper';
+import { useStaticQuery, graphql } from "gatsby"
+import Card from '../components/HomePageCard'
 
-const IndexPage = () => (
-  <Layout>
-    <SEO title="Home" />
-    <h1>Hi people</h1>
-    <p>Welcome to your new Gatsby site.</p>
-    <p>Now go build something great.</p>
-    <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
-      <Image />
-    </div>
-    <Link to="/page-2/">Go to page 2</Link>
-  </Layout>
-)
+const useStyles = makeStyles(theme => ({
+  text: {
+    position: 'right',
+    align: "center",
+  },
 
-export default IndexPage
+  paper: {
+    paddingBottom: 30,
+    paddingTop: 30,
+    margin: "10px",
+    textAlign: "center",
+  },
+  list: {
+    marginBottom: theme.spacing(2),
+  },
+  subheader: {
+    backgroundColor: theme.palette.background.paper,
+  },
+
+  grow: {
+    flexGrow: 1,
+  },
+  fabButton: {
+    position: 'absolute',
+    zIndex: 1,
+    top: -30,
+    left: 0,
+    right: 0,
+    margin: '0 auto',
+  },
+  card: {
+      maxWidth: 345,
+    },
+  media: {
+      height: 140,
+  },
+}));
+
+export default () => {
+  const data = useStaticQuery(graphql`
+  query MyQuery {
+    file(relativePath: { eq: "/cube3.jpg" }) {
+      childImageSharp {
+        # Specify the image processing specifications right in the query.
+        fluid {
+          ...GatsbyImageSharpFluid
+        }
+      }
+    }
+  }
+  `)
+  console.log(data);
+  const classes = useStyles();
+  return (
+    <Layout>
+       <Grid container className={classes.root} spacing={2}  alignItems="stretch">
+          <Grid item xs={12}>
+            <Paper className={classes.paper}>
+              <Typography className={classes.text} variant="h4" gutterBottom alignCenter>
+                  Give new life to your objects
+              </Typography>
+            </Paper>
+        
+          </Grid>
+        <CardsGrid/>
+      </Grid>
+    </Layout>
+  )
+}
+
+
