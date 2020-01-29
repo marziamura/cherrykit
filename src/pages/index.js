@@ -6,7 +6,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import { useStaticQuery, graphql } from "gatsby"
-import Card from '../components/HomePageCard'
+import Handles from "../components/handles"
 
 const useStyles = makeStyles(theme => ({
   text: {
@@ -49,7 +49,7 @@ const useStyles = makeStyles(theme => ({
 export default () => {
   const data = useStaticQuery(graphql`
   query MyQuery {
-    file(relativePath: { eq: "/cube3.jpg" }) {
+    file(relativePath: { eq: "/cubes/cube3.jpg" }) {
       childImageSharp {
         # Specify the image processing specifications right in the query.
         fluid {
@@ -67,12 +67,23 @@ export default () => {
           <Grid item xs={12}>
             <Paper className={classes.paper}>
               <Typography className={classes.text} variant="h4" gutterBottom alignCenter>
-                  Give new life to your objects
+                  Nice Cubes
               </Typography>
             </Paper>
         
           </Grid>
-        <CardsGrid/>
+        <CardsGrid type={"cubes"}/>
+      </Grid>
+      <Grid container className={classes.root} spacing={2}  alignItems="stretch">
+          <Grid item xs={12}>
+            <Paper className={classes.paper}>
+              <Typography className={classes.text} variant="h4" gutterBottom alignCenter>
+                  Nice Handles
+              </Typography>
+            </Paper>
+            
+          </Grid>
+        <Handles/>
       </Grid>
     </Layout>
   )

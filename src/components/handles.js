@@ -43,7 +43,7 @@ export default function HomePageGrid() {
   query {
     allFile(
       filter: {
-        relativeDirectory: { eq: "cubes" }
+        relativeDirectory: { eq: "handles" }
         extension: { regex: "/(jpg)|(png)|(tif)|(tiff)|(webp)|(jpeg)/" }
         
       }
@@ -93,7 +93,6 @@ export default function HomePageGrid() {
     )
 
   }
-
   return (
     <div className={classes.root}>
       <Grid container justify="center" spacing={spacing}>

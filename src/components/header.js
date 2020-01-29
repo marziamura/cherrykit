@@ -1,12 +1,13 @@
 import { Link } from "gatsby"
 import PropTypes from "prop-types"
 import React from "react"
+import CherryIcon from "../components/cherries"
 
 
 const Header = ({ siteTitle }) => (
   <header
     style={{
-      background: `rebeccapurple`,
+      background: `lightblue`,
       marginBottom: `1.45rem`,
     }}
   >
@@ -21,12 +22,12 @@ const Header = ({ siteTitle }) => (
         <Link
           to="/"
           style={{
-            color: `white`,
+            color: `black`,
             textDecoration: `none`,
           }}
         >
-          {siteTitle}
         </Link>
+        <CherryIcon/>
       </h1>
     </div>
   </header>
