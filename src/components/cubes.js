@@ -4,37 +4,14 @@ import Paper from '@material-ui/core/Paper';
 import Card from '@material-ui/core/Card';
 import { makeStyles } from '@material-ui/core/styles';
 import { useStaticQuery, graphql } from "gatsby"
-import { CardActions } from '@material-ui/core';
-import Img from 'gatsby-image'
-import CardHeader from '@material-ui/core/CardHeader';
-import CardMedia from '@material-ui/core/CardMedia';
-import EditIcon from '@material-ui/icons/Edit';
 import ImageGrid from '../components/imageGrid'
 
 const useStyles = makeStyles(theme => ({
     
-  text: {
+  root: {
     padding: theme.spacing(2, 2, 0),
   },
-  paper: {
-    paddingBottom: 30,
-    paddingTop: 30,
-    margin: "10px",
-  },
-  card: {
-    marginBottom: theme.spacing(2),
-    marginTop: theme.spacing(2),
-  },
-
-  media: {
-    height: 800,
-    paddingTop: '56.25%', // 16:9
-  },
-  grid: {
-    // direction:"column",
-    // justify:"right",
-    // alignItems:"right",
-  }
+ 
 }));
 
 export default function HomePageGrid() {
@@ -44,7 +21,7 @@ export default function HomePageGrid() {
   query {
     allFile(
       filter: {
-        relativeDirectory: { eq: "handles" }
+        relativeDirectory: { eq: "cubes" }
         extension: { regex: "/(jpg)|(png)|(tif)|(tiff)|(webp)|(jpeg)/" }
         
       }
@@ -69,6 +46,7 @@ export default function HomePageGrid() {
   }
   `
   );
+  
   let data = imageList.allFile.edges;
 
   return (

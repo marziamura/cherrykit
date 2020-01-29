@@ -20,12 +20,7 @@ const useStyles = makeStyles(theme => ({
     paddingTop: 30,
     margin: "10px",
   },
-  list: {
-    marginBottom: theme.spacing(2),
-  },
   card: {
-    maxWidth: 345,
-    maxHeight: 400,
     marginBottom: theme.spacing(2),
     marginTop: theme.spacing(2),
   },
@@ -34,50 +29,27 @@ const useStyles = makeStyles(theme => ({
     height: 800,
     paddingTop: '56.25%', // 16:9
   },
+  grid: {
+    // direction:"column",
+    // justify:"right",
+    // alignItems:"right",
+  }
 }));
 
-export default function HomePageGrid() {
+export default function HomePageGrid(props) {
   const [spacing] = React.useState(2);
   const classes = useStyles();
-  const imageList = useStaticQuery(graphql`
-  query {
-    allFile(
-      filter: {
-        relativeDirectory: { eq: "cubes" }
-        extension: { regex: "/(jpg)|(png)|(tif)|(tiff)|(webp)|(jpeg)/" }
-        
-      }
-    ) {
-      edges {
-        node {
-          childImageSharp {
-            fluid(maxWidth: 1920, quality: 80) {
-              ...GatsbyImageSharpFluid_withWebp
-            }
-            resize(width: 600, quality: 80) {
-              src
-            }
-          }
-          name
-        }
-      }
-    }
-  }
-  `
-  );
-
-  function getGridItems(props) {
-  let data = imageList.allFile.edges;
- 
+  let data = props.data;
+  function getGridItems() {
    return (
    <React.Fragment>
     {data.map((image) => 
-      < Grid item xs={3} >
+      < Grid item md={3} className={classes.grid}>
          <Paper>
            <Card className={classes.card}>
              <CardHeader title={image.node.name} />
               <CardMedia>
-                <Img fluid={image.node.childImageSharp.fluid} />
+                <Img fixed={image.node.childImageSharp.fixed} />
               </CardMedia>
        
             <CardActions>
@@ -96,7 +68,7 @@ export default function HomePageGrid() {
 
   return (
     <div className={classes.root}>
-      <Grid container justify="center" spacing={spacing}>
+      <Grid container justify="left" spacing={spacing}>
          {getGridItems()}
       </Grid>
     </div>

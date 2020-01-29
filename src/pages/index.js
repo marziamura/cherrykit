@@ -1,12 +1,12 @@
 import React from "react"
 import Layout from "../components/layout"
-import CardsGrid from "../components/HomePageGrid"
+import CardsGrid from "../components/cubes"
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
-import { useStaticQuery, graphql } from "gatsby"
 import Handles from "../components/handles"
+import ImageGrid from "../components/imageGrid"
 
 const useStyles = makeStyles(theme => ({
   text: {
@@ -15,9 +15,9 @@ const useStyles = makeStyles(theme => ({
   },
 
   paper: {
-    paddingBottom: 30,
-    paddingTop: 30,
-    margin: "10px",
+    paddingBottom: 10,
+    paddingTop: 10,
+    margin: "5px",
     textAlign: "center",
   },
   list: {
@@ -39,52 +39,49 @@ const useStyles = makeStyles(theme => ({
     margin: '0 auto',
   },
   card: {
-      maxWidth: 345,
+    height: 100,
     },
   media: {
       height: 140,
   },
+  grid: {
+  justify:"left",
+  alignItems:"flex-end",
+  alignContent: "flex-start",
+  display:"flex",
+  }
 }));
 
 export default () => {
-  const data = useStaticQuery(graphql`
-  query MyQuery {
-    file(relativePath: { eq: "/cubes/cube3.jpg" }) {
-      childImageSharp {
-        # Specify the image processing specifications right in the query.
-        fluid {
-          ...GatsbyImageSharpFluid
-        }
-      }
-    }
-  }
-  `)
-  console.log(data);
+
   const classes = useStyles();
   return (
     <Layout>
-       <Grid container className={classes.root} spacing={2}  alignItems="stretch">
-          <Grid item xs={12}>
+      
+       <Grid  container spacing={2}  className={classes.grid} >
+          <Grid  item md={12}>
             <Paper className={classes.paper}>
-              <Typography className={classes.text} variant="h4" gutterBottom alignCenter>
+              <Typography className={classes.text} variant="h5" gutterBottom alignCenter>
                   Nice Cubes
               </Typography>
             </Paper>
-        
           </Grid>
-        <CardsGrid type={"cubes"}/>
-      </Grid>
-      <Grid container className={classes.root} spacing={2}  alignItems="stretch">
-          <Grid item xs={12}>
+          <CardsGrid />
+        </Grid>
+        <Grid container spacing={2}  className={classes.grid} >
+          <Grid item md={12} >
             <Paper className={classes.paper}>
-              <Typography className={classes.text} variant="h4" gutterBottom alignCenter>
+              <Typography className={classes.text} variant="h5" alignCenter>
                   Nice Handles
               </Typography>
             </Paper>
-            
-          </Grid>
-        <Handles/>
-      </Grid>
+          </Grid  >
+              
+        
+              <Handles/>
+              
+        </Grid>
+
     </Layout>
   )
 }
