@@ -49,6 +49,12 @@ const useStyles = makeStyles(theme => ({
   alignItems:"flex-end",
   alignContent: "flex-start",
   display:"flex",
+  },
+
+  frame:{
+    position: "fixed",
+    right: "+400px",
+    bottom: "400px", 
   }
 }));
 
@@ -81,7 +87,7 @@ export default () => {
               <Handles/>
               
         </Grid>
-
+        <iframe className={classes.frame} title="CherryKit"src="page-2" width="800" height="600"></iframe>
     </Layout>
   )
 }
