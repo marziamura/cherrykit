@@ -9,8 +9,7 @@ import CubeImg from "../components/cube2"
 const SecondPage = () => (
   <Layout>
     <SEO title="Page two" />
-    <h1>Hi from the eidtor/h1>
-    
+    <h1>Hi from the eidtor</h1>
     <CubeImg/>
   </Layout>
 )
