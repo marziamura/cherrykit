@@ -9,6 +9,7 @@ import Img from 'gatsby-image'
 import CardHeader from '@material-ui/core/CardHeader';
 import CardMedia from '@material-ui/core/CardMedia';
 import EditIcon from '@material-ui/icons/Edit';
+import IconButton from '@material-ui/core/IconButton';
 
 const useStyles = makeStyles(theme => ({
     
@@ -53,7 +54,10 @@ export default function HomePageGrid(props) {
               </CardMedia>
        
             <CardActions>
-            <EditIcon size="small">Edit</EditIcon>
+            <IconButton color="primary" aria-label="Edit">
+             <EditIcon size="small"/>
+            </IconButton>
+           
             </CardActions>
             </Card>
         </Paper>

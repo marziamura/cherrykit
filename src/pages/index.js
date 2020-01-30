@@ -51,19 +51,25 @@ const useStyles = makeStyles(theme => ({
   display:"flex",
   },
 
-  frame:{
+  frameshow:{
     position: "fixed",
     right: "+400px",
     bottom: "400px", 
-  }
+  },
+
 }));
 
 export default () => {
 
   const classes = useStyles();
+  
+  const [iframestate, setState] = React.useState(false);
+  function OnClick(){
+    setState(!iframestate);
+  }
   return (
     <Layout>
-      
+      <div  onClick={OnClick} >
        <Grid  container spacing={2}  className={classes.grid} >
           <Grid  item md={12}>
             <Paper className={classes.paper}>
@@ -74,7 +80,7 @@ export default () => {
           </Grid>
           <CardsGrid />
         </Grid>
-        <Grid container spacing={2}  className={classes.grid} >
+        <Grid container spacing={2}  className={classes.grid}>
           <Grid item md={12} >
             <Paper className={classes.paper}>
               <Typography className={classes.text} variant="h5" alignCenter>
@@ -87,7 +93,8 @@ export default () => {
               <Handles/>
               
         </Grid>
-        <iframe className={classes.frame} title="CherryKit"src="page-2" width="800" height="600"></iframe>
+        <iframe id="editFrame" className={classes.frameshow} style={{display: iframestate ? 'block' : 'none' }}title="CherryKit"src="page-2" width="800" height="600"></iframe>
+        </div>
     </Layout>
   )
 }
