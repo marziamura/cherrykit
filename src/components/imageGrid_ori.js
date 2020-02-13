@@ -9,7 +9,7 @@ import Img from 'gatsby-image'
 import CardHeader from '@material-ui/core/CardHeader';
 import CardMedia from '@material-ui/core/CardMedia';
 import EditIcon from '@material-ui/icons/Edit';
-import ImageGrid from './imageGrid'
+import IconButton from '@material-ui/core/IconButton';
 
 const useStyles = makeStyles(theme => ({
     
@@ -37,47 +37,47 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function HomePageGrid() {
+export default function HomePageGrid(props) {
   const [spacing] = React.useState(2);
   const classes = useStyles();
-  const imageList = useStaticQuery(graphql`
-  query {
-    allFile(
-      filter: {
-        relativeDirectory: { eq: "handles" }
-        extension: { regex: "/(jpg)|(png)|(tif)|(tiff)|(webp)|(jpeg)/" }
-        
-      }
-    ) {
-      edges {
-        node {
-          childImageSharp {
-            fluid(maxWidth: 1920, quality: 80) {
-              ...GatsbyImageSharpFluid_withWebp
-            }
-            fixed(width: 200, height: 200) {
-              ...GatsbyImageSharpFixed
-            }
-            resize(width: 600, quality: 80) {
-              src
-            }
-          }
-          name
-        }
-      }
-    }
+  let data = props.data;
+  function getGridItems() {
+   return (
+   <React.Fragment>
+    {data.map((image) => 
+      < Grid item md={3} className={classes.grid}>
+   
+           <Card className={classes.card}>
+             <CardHeader title={image.node.name} />
+              <CardMedia>
+                <Img fixed={image.node.childImageSharp.fixed} />
+              </CardMedia>
+       
+            <CardActions>
+            <IconButton color="primary" aria-label="Edit">
+             <EditIcon size="small"/>
+            </IconButton>
+           
+            </CardActions>
+            </Card>
+
+       </Grid>
+      )}
+
+
+   </React.Fragment>
+    )
+
   }
-  `
-  );
-  let data = imageList.allFile.edges;
 
   return (
-     
+    <div className={classes.root}>
+      <Grid container justify="left" spacing={spacing}>
+         {getGridItems()}
+      </Grid>
+    </div>
+  );
  
-        <ImageGrid data = {data}/>
- 
-     
-    );
   
 }
 

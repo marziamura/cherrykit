@@ -1,22 +1,10 @@
 import React from 'react';
-import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
-import Card from '@material-ui/core/Card';
 import { makeStyles } from '@material-ui/core/styles';
 import { useStaticQuery, graphql } from "gatsby"
-import ImageGrid from '../components/imageGrid'
-
-const useStyles = makeStyles(theme => ({
-    
-  root: {
-    padding: theme.spacing(2, 2, 0),
-  },
- 
-}));
+import ImageGrid from './imageGrid'
 
 export default function HomePageGrid() {
-  const [spacing] = React.useState(2);
-  const classes = useStyles();
+ 
   const imageList = useStaticQuery(graphql`
   query {
     allFile(
@@ -50,11 +38,10 @@ export default function HomePageGrid() {
   let data = imageList.allFile.edges;
 
   return (
-      <div className={classes.root}>
-        <Grid container justify="center" spacing={spacing}>
+    
         <ImageGrid data = {data}/>
-        </Grid>
-      </div>
+       
+   
     );
   
 }

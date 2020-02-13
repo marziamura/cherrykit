@@ -4,9 +4,10 @@ import CardsGrid from "../components/cubes"
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
 import Handles from "../components/handles"
-import ImageGrid from "../components/imageGrid"
+import Carousel from '../components/carousel'
+import Box from '@material-ui/core/Box'
+
 
 const useStyles = makeStyles(theme => ({
   text: {
@@ -70,30 +71,22 @@ export default () => {
   return (
     <Layout>
       <div  onClick={OnClick} >
-       <Grid  container spacing={2}  className={classes.grid} >
-          <Grid  item md={12}>
-            <Paper className={classes.paper}>
-              <Typography className={classes.text} variant="h5" gutterBottom alignCenter>
-                  Nice Cubes
-              </Typography>
-            </Paper>
-          </Grid>
+     <Box justifyContent="center">
+        <Typography variant="h3" align='center'>
+          Build the perfect item to fix the problem
+        </Typography>
+        <Typography variant="h4" align='center'>
+          In three easy steps:
+        </Typography>
+     </Box>   
+     <Carousel/>
+       <Grid  container spacing={0}  className={classes.grid}  direction="row"  alignItems="center"  justify="space-evenly">
+  
           <CardsGrid />
+          <Handles/>
+      
         </Grid>
-        <Grid container spacing={2}  className={classes.grid}>
-          <Grid item md={12} >
-            <Paper className={classes.paper}>
-              <Typography className={classes.text} variant="h5" alignCenter>
-                  Nice Handles
-              </Typography>
-            </Paper>
-          </Grid  >
-              
-        
-              <Handles/>
-              
-        </Grid>
-        <iframe id="editFrame" className={classes.frameshow} style={{display: iframestate ? 'block' : 'none' }}title="CherryKit"src="page-2" width="800" height="600"></iframe>
+        <iframe id="editFrame" className={classes.frameshow} style={{display: iframestate ? 'block' : 'none' }}title="CherryKit"src="https://test.couchmade.com/" width="800" height="600"></iframe>
         </div>
     </Layout>
   )

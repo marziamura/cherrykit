@@ -1,15 +1,8 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
-import Card from '@material-ui/core/Card';
 import { makeStyles } from '@material-ui/core/styles';
-import { useStaticQuery, graphql } from "gatsby"
-import { CardActions } from '@material-ui/core';
 import Img from 'gatsby-image'
-import CardHeader from '@material-ui/core/CardHeader';
-import CardMedia from '@material-ui/core/CardMedia';
-import EditIcon from '@material-ui/icons/Edit';
-import IconButton from '@material-ui/core/IconButton';
+
 
 const useStyles = makeStyles(theme => ({
     
@@ -31,9 +24,7 @@ const useStyles = makeStyles(theme => ({
     paddingTop: '56.25%', // 16:9
   },
   grid: {
-    // direction:"column",
-    // justify:"right",
-    // alignItems:"right",
+   
   }
 }));
 
@@ -45,23 +36,9 @@ export default function HomePageGrid(props) {
    return (
    <React.Fragment>
     {data.map((image) => 
-      < Grid item md={3} className={classes.grid}>
-         <Paper>
-           <Card className={classes.card}>
-             <CardHeader title={image.node.name} />
-              <CardMedia>
-                <Img fixed={image.node.childImageSharp.fixed} />
-              </CardMedia>
-       
-            <CardActions>
-            <IconButton color="primary" aria-label="Edit">
-             <EditIcon size="small"/>
-            </IconButton>
-           
-            </CardActions>
-            </Card>
-        </Paper>
-       </Grid>
+       <Grid item >
+        <Img fixed={image.node.childImageSharp.fixed} tag="Click to Edit"/>
+       </Grid> 
       )}
 
 
@@ -71,11 +48,11 @@ export default function HomePageGrid(props) {
   }
 
   return (
-    <div className={classes.root}>
-      <Grid container justify="left" spacing={spacing}>
+   
+    <React.Fragment>
          {getGridItems()}
-      </Grid>
-    </div>
+     
+    </React.Fragment>
   );
  
   
