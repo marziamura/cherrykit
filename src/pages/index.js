@@ -73,21 +73,26 @@ export default () => {
       <div  onClick={OnClick} >
      <Box justifyContent="center">
         <Typography variant="h3" align='center'>
-          Build the perfect item to fix the problem
+          Build the fix that blends in
         </Typography>
         <Typography variant="h4" align='center'>
           In three easy steps:
         </Typography>
-     </Box>   
+     </Box> 
      <Carousel/>
-       <Grid  container spacing={0}  className={classes.grid}  direction="row"  alignItems="center"  justify="space-evenly">
+     <Box justifyContent="left">
+        <Typography variant="h5" align='left'>
+         Try it out:
+        </Typography>
+     </Box>  
+       <Grid  container className={classes.grid}  direction="row"  alignItems="center"  justify="space-evenly">
   
           <CardsGrid />
           <Handles/>
       
         </Grid>
         <iframe id="editFrame" className={classes.frameshow} style={{display: iframestate ? 'block' : 'none' }}title="CherryKit"src="https://test.couchmade.com/" width="800" height="600"></iframe>
-        </div>
+    </div>
     </Layout>
   )
 }
